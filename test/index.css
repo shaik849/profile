@@ -1,0 +1,286 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", Arial, sans-serif;
+}
+
+/* Header */
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 2em;
+    position: relative;
+}
+
+.logo {
+    font-size: 30px;
+    position: absolute; /* Absolute positioning for centering */
+    left: 50%; /* Move the logo's start to the center of the container */
+    transform: translateX(-50%); /* Shift logo back by half its width to center it */
+}
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+}
+
+.auth-links {
+    display: flex;
+    gap: 1.5em;
+    margin-left: auto; /* Push the auth-links to the far right */
+}
+
+.auth-links a {
+    color: white;
+    padding: 0.4em 1em;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-links .signup {
+    background-color: white;
+    color: #ff4d4d;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.auth-links .signup:hover {
+    background-color: #ffd6d6;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    text-align: center;
+    padding: 6% 2%;
+    background-image: url("https://img.cdn4dd.com/cdn-cgi/image/fit=cover,format=auto,quality=60/https://cdn.doordash.com/managed/consumer/seo/home/hero_v3/hero_desktop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero h1 {
+    margin-top: 150px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em auto;
+}
+
+.search-bar input {
+    padding: 0.8em;
+    width: 350px;
+    border-radius: 20px 20px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    position: absolute;
+}
+
+.search-bar button {
+    position: relative;
+    padding: 0.5em 0.7em;
+    margin-left: 300px;
+    background-color: #ff4d4d;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #ffd6d6;
+}
+
+.saved-address {
+    display: inline-block;
+    padding: 0.8em 2em;
+    margin-top: 1em;
+    background-color: white;
+    color: #000;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.saved-address:hover {
+    background-color: #ffd6d6;
+}
+
+/* Button visibility based on screen size */
+.desktop-btn {
+    display: inline-block; /* Visible by default on larger screens */
+}
+
+.mobile-btn {
+    display: none; /* Hidden by default on larger screens */
+}
+
+.playstore-container {
+    display: none;
+}
+/* Section layout for cards */
+.section {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of cards if necessary */
+    gap: 20px;
+    justify-content: center; /* Center cards horizontally */
+    padding: 2em;
+    flex-direction: row; /* Display cards in a row */
+}
+
+/* Card styling */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5em;
+    width: 100%;
+    max-width: 350px; /* Cards will not exceed 350px */
+    text-align: center;
+    box-shadow: none;
+}
+
+/* Card Images */
+.card img {
+    width: 80%;
+    max-width: 250px;
+    margin-bottom: 1em;
+}
+
+/* Card Titles */
+.card h2 {
+    font-size: 1.8em;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+/* Card Paragraphs */
+.card p {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 1.5em;
+}
+
+/* Card Links */
+.card a {
+    text-decoration: none;
+    color: #ff4d4d;
+    font-weight: bold;
+    padding: 0.8em 1.5em;
+    background-color: white;
+    /* border: 2px solid #ff4d4d;
+    border-radius: 20px; */
+}
+
+/* Mobile and Tablet - Column Layout */
+@media (max-width : 649px)  {
+    .hero {
+        height: 85vh;
+        padding: 20% 3%;
+     }
+    .logo{
+        margin-top: 200px;
+    }
+    .desktop-btn {
+        display: none; /* Hide desktop button on smaller screens */
+    }
+
+    .mobile-btn {
+        display: inline-block; /* Show mobile button on smaller screens */
+    }
+    .search-bar button {
+        background-color: #fff;
+    }
+    .playstore-container {
+        display: flex; /* Make it visible */
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 2em;
+        text-align: center;
+        max-width: 350px;
+        margin: 2em auto; /* Center horizontally */
+        flex-direction: column;
+        align-items: center;
+        gap: 1em; /* Spacing between elements */
+    }
+
+    .playstore-container h5 {
+        font-size: 1.2em;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5em;
+    }
+
+    .playstore-container h4 {
+        font-size: 1.5em;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .playstore-container p {
+        font-size: 1em;
+        color: #777;
+        margin-bottom: 1em;
+    }
+
+    .playstore-container .saved-address {
+        display: inline-block;
+        padding: 0.8% 2%;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .playstore-container .saved-address:hover {
+        background-color: #d43a3a;
+    }
+    .section {
+        flex-direction: column; /* Display cards in a column layout */
+        align-items: center; /* Center the cards horizontally */
+    }
+}
+
+/* tablet - Row Layout */
+@media (min-width: 650px) and (max-width: 1024px) {
+
+    .hero {
+       height: 80vh;
+       padding: 5em 2em;
+    }
+    .desktop-btn {
+        display: inline-block; /* Visible by default on larger screens */
+    }
+    
+    .mobile-btn {
+        display: none; /* Hidden by default on larger screens */
+    }
+    .section {
+        flex-direction: column; /* Display cards in a column layout */
+        align-items: center; /* Center the cards horizontally */
+    }
+
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Landing Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .hero {
+      background: url('https://img.cdn4dd.com/cdn-cgi/image/fit=cover,format=auto,quality=60/https://cdn.doordash.com/managed/consumer/seo/home/hero_v3/hero_desktop.png') no-repeat center center;
+      background-size: cover;
+      height: 85vh;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+    }
+
+    .navbar-nav .btn-outline-primary {
+      border-color: white;
+      color: white;
+    }
+
+    .navbar-nav .btn-outline-primary:hover {
+      background-color: white;
+      color: #0d6efd;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .input-group input {
+      max-width: 350px;
+      max-height: 40px;
+      position: relative;
+    }
+
+    .input-group button {
+      position: absolute;
+      bottom: 15px;
+      right: 55px;
+    }
+
+    .hero button {
+      margin-top: 1rem;
+    }
+
+    /* Adjust spacing to prevent header overlap with hero section */
+    .header-space {
+      padding-top: 70px; /* Adjust based on navbar height */
+    }
+
+    /* Ensure navbar content is centered */
+    .navbar-nav, .navbar-collapse {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    /* Fixing the logo container to center in all screen sizes */
+    .navbar-collapse .mx-auto {
+      flex-grow: 1;
+      text-align: center;
+      order: 0; /* Ensures logo stays centered */
+    }
+
+    /* Override for mobile */
+    @media (max-width: 767px) {
+      .navbar-collapse {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="bg-transparent d-flex justify-content-center position-absolute w-100 z-3">
+    <nav class="navbar navbar-expand-lg navbar-mar">
+      <div class="container-fluid d-flex justify-content-between">
+        <!-- Left side of Navbar (for toggling) -->
+        <div class="mx-auto text-center order-1 order-lg-0">
+          <a class="navbar-brand text-white fw-bold" href="#">DOORDASH</a>
+        </div>
+        <div class="d-flex">
+          <!-- Toggle Button for Mobile -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+  
+        <!-- Centered Logo -->
+  
+        <!-- Right side of Navbar (for sign in and sign up) -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light bg-white text-danger rounded-pill" href="#">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center justify-content-center text-center text-white">
+    <div class="container hero-content">
+      <h1 class="display-5 fw-bold">Discover restaurants and more near you.</h1>
+      <div class="input-group my-3 justify-content-center">
+        <input type="text" class="form-control rounded-pill" placeholder="Enter delivery address">
+        <button class="btn btn-danger rounded-pill ms-2 z-3">➔</button>
+      </div>
+      <button class="btn btn-light rounded-pill">Sign in for saved address</button>
+    </div>
+  </section>
+
+  <!-- Section Content -->
+  <section class="py-5 header-space">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm">
+            <img src="https://cdn.doordash.com/media/consumer/home/landing/new/ScootScoot.svg" class="card-img-top mx-auto mt-3" alt="Dasher Icon" style="width: 50%;">
+            <div class="card-body">
+              <h5 class="card-title">Become a Dasher</h5>
+              <p class="card-text">As a delivery driver, you'll make reliable money—working anytime, anywhere.</p>
+              <a href="#" class="btn btn-link text-danger">Start earning →</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm">
+            <img src="https://cdn.doordash.com/media/consumer/home/landing/new/Storefront.svg" class="card-img-top mx-auto mt-3" alt="Partner Icon" style="width: 50%;">
+            <div class="card-body">
+              <h5 class="card-title">Become a Partner</h5>
+              <p class="card-text">Grow your business and reach new customers by partnering with us.</p>
+              <a href="#" class="btn btn-link text-danger">Sign up your store →</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm">
+            <img src="https://cdn.doordash.com/media/consumer/home/landing/new/iphone.svg" class="card-img-top mx-auto mt-3" alt="DoorDash Icon" style="width: 50%;">
+            <div class="card-body">
+              <h5 class="card-title">Get the best DoorDash experience</h5>
+              <p class="card-text">Experience the best your neighborhood has to offer, all in one app.</p>
+              <a href="#" class="btn btn-link text-danger">Get the app →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+</body>
+</html>
