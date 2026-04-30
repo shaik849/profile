@@ -22,18 +22,36 @@ jobs:
         run: |
           DIFF=$(cat diff.txt | sed 's/"/\\"/g')
 
-          RESPONSE=$(curl -s -X POST https://assumed-titanium-lovers-finally.trycloudflare.com/api/review \
+          RESPONSE=$(curl -L -s -X POST https://assumed-titanium-lovers-finally.trycloudflare.com/api/review \
             -H "Content-Type: application/json" \
             -d "{\"diff\":\"$DIFF\"}")
 
           echo "$RESPONSE" > result.json
 
-      - name: Comment on PR
+      # 🔍 DEBUG (very important)
+      - name: Debug API response
+        run: |
+          echo "===== RAW RESPONSE ====="
+          cat result.json
+
+      - name: Comment on PR (safe)
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const result = JSON.parse(fs.readFileSync('result.json', 'utf8'));
+            const raw = fs.readFileSync('result.json', 'utf8');
+
+            let result;
+
+            try {
+              result = JSON.parse(raw);
+            } catch (e) {
+              result = {
+                status: "ERROR",
+                summary: "Invalid JSON from API",
+                raw: raw.substring(0, 500)
+              };
+            }
 
             const body =
               "AI Code Review\n\n" +
@@ -44,7 +62,10 @@ jobs:
               "**Suggestions:**\n" +
               (result.suggestions || [])
                 .map(s => "- " + s.file + ":" + s.line + " -> " + s.message)
-                .join("\n");
+                .join("\n") +
+              "\n\n---\n**Debug (raw response):**\n```\n" +
+              (result.raw || "") +
+              "\n```";
 
             await github.rest.issues.createComment({
               ...context.repo,
@@ -54,11 +75,18 @@ jobs:
 
       - name: Fail if BLOCKED
         run: |
-          STATUS=$(node -e "console.log(require('./result.json').status)")
+          STATUS=$(node -e "
+            try {
+              const r = require('./result.json');
+              console.log(r.status || 'ERROR');
+            } catch(e) {
+              console.log('ERROR');
+            }
+          ")
 
           echo "Status: $STATUS"
 
           if [ "$STATUS" = "BLOCKED" ]; then
-            echo "PR Blocked by AI Review"
+            echo "❌ PR Blocked by AI Review"
             exit 1
           fi
