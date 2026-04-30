@@ -28,7 +28,6 @@ jobs:
 
           echo "$RESPONSE" > result.json
 
-      # ✅ ADD COMMENT STEP HERE (before fail)
       - name: Comment on PR
         uses: actions/github-script@v7
         with:
@@ -36,40 +35,30 @@ jobs:
             const fs = require('fs');
             const result = JSON.parse(fs.readFileSync('result.json', 'utf8'));
 
-            const body = `
-🤖 AI Code Review
+            const body =
+              "AI Code Review\n\n" +
+              "**Status:** " + result.status + "\n\n" +
+              "**Summary:**\n" + (result.summary || "N/A") + "\n\n" +
+              "**Changes:**\n" + (result.changes || []).join("\n") + "\n\n" +
+              "**Issues:**\n" + (result.issues || []).join("\n") + "\n\n" +
+              "**Suggestions:**\n" +
+              (result.suggestions || [])
+                .map(s => "- " + s.file + ":" + s.line + " -> " + s.message)
+                .join("\n");
 
-**Status:** ${result.status}
-
-**Summary:**
-${result.summary}
-
-**Changes:**
-${(result.changes || []).join("\n")}
-
-**Issues:**
-${(result.issues || []).join("\n")}
-
-**Suggestions:**
-${(result.suggestions || [])
-  .map(s => `- ${s.file}:${s.line} → ${s.message}`)
-  .join("\n")}
-            `;
-
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               ...context.repo,
               issue_number: context.issue.number,
               body
             });
 
-      # ✅ FAIL AFTER COMMENT
       - name: Fail if BLOCKED
         run: |
-          STATUS=$(cat result.json | jq -r '.status')
+          STATUS=$(node -e "console.log(require('./result.json').status)")
 
           echo "Status: $STATUS"
 
           if [ "$STATUS" = "BLOCKED" ]; then
-            echo "❌ PR Blocked by AI Review"
+            echo "PR Blocked by AI Review"
             exit 1
           fi
