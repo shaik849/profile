@@ -22,7 +22,7 @@ jobs:
         run: |
           DIFF=$(cat diff.txt | sed 's/"/\\"/g')
 
-          RESPONSE=$(curl -s -X POST https://your-vercel-url/api/review \
+          RESPONSE=$(curl -s -X POST https://assumed-titanium-lovers-finally.trycloudflare.com/api/review \
             -H "Content-Type: application/json" \
             -d "{\"diff\":\"$DIFF\"}")
 
